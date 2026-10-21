@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSmart – Platform Pertanian Digital Indonesia</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#81C784',
+                        earth: '#795548',
+                        lightbg: '#F4F6F4'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-lightbg text-gray-800 antialiased">
+
+    <!-- Top Bar / Navbar -->
+    <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-primary text-white p-2.5 rounded-xl shadow-lg flex items-center justify-center">
+                        <i class="fa-solid fa-seedling text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-primary">Agri<span class="text-secondary">Smart</span></span>
+                        <p class="text-xs text-gray-500 font-medium">Pertanian Digital Indonesia</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-gray-600">
+                    <a href="#beranda" class="text-primary font-semibold hover:text-primary transition">Beranda</a>
+                    <a href="#informasi" class="hover:text-primary transition">Informasi</a>
+                    <a href="#budidaya" class="hover:text-primary transition">Panduan Budidaya</a>
+                    <a href="#harga-pasar" class="hover:text-primary transition">Harga Pasar</a>
+                    <a href="#marketplace" class="hover:text-primary transition">Marketplace</a>
+                    <a href="#dashboard" class="hover:text-primary transition">Dashboard Petani</a>
+                    <a href="#tentang" class="hover:text-primary transition">Tentang Kami</a>
+                    <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('loginModal')" class="text-primary font-medium hover:text-secondary px-4 py-2 transition">Masuk</button>
+                    <button onclick="openModal('registerModal')" class="bg-primary hover:bg-emerald-800 text-white px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">Daftar</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-600 hover:text-primary focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#beranda" class="block py-2 text-primary font-semibold">Beranda</a>
+            <a href="#informasi" class="block py-2 text-gray-600">Informasi Pertanian</a>
+            <a href="#budidaya" class="block py-2 text-gray-600">Panduan Budidaya</a>
+            <a href="#harga-pasar" class="block py-2 text-gray-600">Harga Pasar</a>
+            <a href="#marketplace" class="block py-2 text-gray-600">Marketplace</a>
+            <a href="#dashboard" class="block py-2 text-gray-600">Dashboard Petani</a>
+            <a href="#tentang" class="block py-2 text-gray-600">Tentang Kami</a>
+            <a href="#kontak" class="block py-2 text-gray-600">Kontak</a>
+            <div class="pt-4 flex flex-col space-y-2 border-t border-gray-100">
+                <button onclick="openModal('loginModal')" class="w-full text-center py-2.5 text-primary border border-primary rounded-xl font-medium">Masuk</button>
+                <button onclick="openModal('registerModal')" class="w-full text-center py-2.5 bg-primary text-white rounded-xl font-medium shadow">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto text-white space-y-6">
+            <span class="bg-secondary/30 text-emerald-200 border border-secondary/50 text-xs sm:text-sm px-4 py-1.5 rounded-full uppercase tracking-wider font-semibold backdrop-blur-sm">
+                <i class="fa-solid fa-bolt mr-1.5"></i> Inovasi Teknologi 4.0
+            </span>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-md">
+                Membangun Pertanian Indonesia yang Lebih <span class="text-secondary">Cerdas dan Berkelanjutan</span>
+            </h1>
+            <p class="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+                Platform digital terpadu bagi petani modern Indonesia untuk mengakses informasi, memantau harga pasar secara real-time, memasarkan hasil panen, dan menerapkan teknik budidaya terbaik.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                <a href="#marketplace" class="w-full sm:w-auto bg-primary hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                    <span>Jelajahi Pertanian</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#harga-pasar" class="w-full sm:w-auto bg-white/10 hover:bg-white/25 border border-white/40 backdrop-blur-md text-white font-semibold px-8 py-3.5 rounded-xl transition flex items-center justify-center space-x-2">
+                    <span>Lihat Harga Pasar</span>
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Statistik -->
+    <section class="bg-white py-12 border-b border-gray-100 shadow-sm relative z-10 -mt-10 max-w-6xl mx-auto rounded-3xl">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="p-4 border-r last:border-none border-gray-100">
+                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">45.000+</div>
+                <div class="text-gray-500 text-sm font-medium">Petani Bergabung</div>
+            </div>
+            <div class="p-4 border-r last:border-none border-gray-100">
+                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">120+</div>
+                <div class="text-gray-500 text-sm font-medium">Komoditas Unggulan</div>
+            </div>
+            <div class="p-4 border-r last:border-none border-gray-100">
+                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">500+</div>
+                <div class="text-gray-500 text-sm font-medium">Artikel Edukasi</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">Rp 15M+</div>
+                <div class="text-gray-500 text-sm font-medium">Nilai Transaksi Pasar</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur A: Informasi Pertanian -->
+    <section id="informasi" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+                <span class="text-primary font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3 py-1 rounded-full">Wawasan Tani</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Informasi & Teknologi Pertanian Terbaru</h2>
+            </div>
+            <a href="#informasi" class="mt-4 md:mt-0 text-primary font-semibold hover:text-emerald-700 flex items-center space-x-1">
+                <span>Lihat Semua Artikel</span>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80" alt="Smart Farming" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-4 left-4 bg-primary text-white text-xs px-3 py-1 rounded-lg font-medium">Teknologi</span>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-gray-400 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 20 Oktober 2026</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition">Penerapan IoT dan Sensor Tanah Pintar untuk Peningkatan Hasil Panen Padi</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 mb-4">Pelajari bagaimana sensor kelembaban tanah berbasis IoT membantu petani mengatur penyiraman secara otomatis dan menghemat penggunaan air.</p>
+                    <a href="#" class="text-primary font-semibold text-sm hover:underline flex items-center space-x-1"><span>Baca Selengkapnya</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                </div>
+            </div>
+            <!-- Article 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" alt="Pupuk Organik" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-4 left-4 bg-primary text-white text-xs px-3 py-1 rounded-lg font-medium">Pupuk & Nutrisi</span>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-gray-400 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 18 Oktober 2026</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition">Strategi Pemupukan Berimbang untuk Menjaga Kesuburan Lahan Jangka Panjang</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 mb-4">Kombinasi pupuk organik dan anorganik yang tepat guna mengurangi biaya operasional serta mengembalikan mikroorganisme tanah.</p>
+                    <a href="#" class="text-primary font-semibold text-sm hover:underline flex items-center space-x-1"><span>Baca Selengkapnya</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                </div>
+            </div>
+            <!-- Article 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group">
+                <div class="relative overflow-hidden h-52">
+                    <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80" alt="Pengendalian Hama" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-4 left-4 bg-primary text-white text-xs px-3 py-1 rounded-lg font-medium">Hama & Penyakit</span>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-gray-400 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 15 Oktober 2026</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition">Pengendalian Hama Terpadu (PHT) Tanaman Cabai di Musim Penghujan</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 mb-4">Tips dan trik praktis mengantisipasi serangan patogen dan kutu kebul pada tanaman cabai saat curah tinggi.</p>
+                    <a href="#" class="text-primary font-semibold text-sm hover:underline flex items-center space-x-1"><span>Baca Selengkapnya</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Komoditas Unggulan -->
+    <section class="bg-emerald-50/60 py-16 border-y border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-primary font-bold text-sm tracking-wider uppercase bg-white px-3 py-1 rounded-full shadow-sm">Komoditas Nusantara</span>
+            <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-4">Komoditas Unggulan Pertanian Indonesia</h2>
+            <p class="text-gray-600 max-w-xl mx-auto mb-10">Fokus pengembangan dan pemantauan hasil bumi berkualitas tinggi dari berbagai daerah di Indonesia.</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Komoditas 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group">
+                    <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition">
+                        <i class="fa-solid fa-wheat-awn text-3xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Padi / Beras</h3>
+                    <p class="text-xs text-gray-500 mt-1">Pangan Utama Nasional</p>
+                </div>
+                <!-- Komoditas 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group">
+                    <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition">
+                        <i class="fa-solid fa-seedling text-3xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Jagung</h3>
+                    <p class="text-xs text-gray-500 mt-1">Pakan & Pangan</p>
+                </div>
+                <!-- Komoditas 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group">
+                    <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition">
+                        <i class="fa-solid fa-pepper-hot text-3xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Cabai</h3>
+                    <p class="text-xs text-gray-500 mt-1">Hortikultura Bernilai Tinggi</p>
+                </div>
+                <!-- Komoditas 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group">
+                    <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition">
+                        <i class="fa-solid fa-mug-hot text-3xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Kopi</h3>
+                    <p class="text-xs text-gray-500 mt-1">Komoditas Ekspor</p>
+                </div>
+                <!-- Komoditas 5 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center group col-span-2 sm:col-span-1">
+                    <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition">
+                        <i class="fa-solid fa-carrot text-3xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Sayuran</h3>
+                    <p class="text-xs text-gray-500 mt-1">Segar & Organik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur B: Panduan Budidaya -->
+    <section id="budidaya" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-primary font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3 py-1 rounded-full">Edukasi Praktis</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Panduan Budidaya Tanaman</h2>
+            <p class="text-gray-600 mt-3">Langkah demi langkah memulai budidaya dari persiapan lahan, pemupukan, hingga masa panen optimal.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Budidaya Padi -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-emerald-100 text-primary w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold">🌾</div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-900">Budidaya Padi Unggul</h3>
+                        <span class="text-xs text-gray-400">Durasi: 100 - 120 Hari</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Persiapan benih varietas bersertifikat</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pengolahan lahan & pembajakan sawah</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Sistem tanam Jajar Legowo</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Jadwal pemupukan susulan & irigasi</li>
+                </ul>
+                <button onclick="alert('Membuka Panduan Lengkap Budidaya Padi')" class="w-full bg-emerald-50 hover:bg-primary hover:text-white text-primary font-semibold py-2.5 rounded-xl transition text-sm">Lihat Panduan Detail</button>
+            </div>
+            <!-- Budidaya Cabai -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-emerald-100 text-primary w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold">🌶️</div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-900">Budidaya Cabai Merah</h3>
+                        <span class="text-xs text-gray-400">Durasi: 90 - 100 Hari</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pembuatan persemaian & seleksi bibit</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pemasangan mulsa plastik hitam perak</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pengendalian hama kutu & lalat buah</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Teknik pemetikan buah tepat warna</li>
+                </ul>
+                <button onclick="alert('Membuka Panduan Lengkap Budidaya Cabai')" class="w-full bg-emerald-50 hover:bg-primary hover:text-white text-primary font-semibold py-2.5 rounded-xl transition text-sm">Lihat Panduan Detail</button>
+            </div>
+            <!-- Budidaya Jagung -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="bg-emerald-100 text-primary w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold">🌽</div>
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-900">Budidaya Jagung Hibrida</h3>
+                        <span class="text-xs text-gray-400">Durasi: 100 - 105 Hari</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pemilihan lahan kering / tegalan</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Jarak tanam optimal 70x20 cm</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Pemupukan urea & NPK bertahap</li>
+                    <li><i class="fa-solid fa-circle-check text-secondary mr-2"></i>Penanganan pascapanen & pengeringan</li>
+                </ul>
+                <button onclick="alert('Membuka Panduan Lengkap Budidaya Jagung')" class="w-full bg-emerald-50 hover:bg-primary hover:text-white text-primary font-semibold py-2.5 rounded-xl transition text-sm">Lihat Panduan Detail</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur C: Harga Pasar -->
+    <section id="harga-pasar" class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
+                <div>
+                    <span class="text-primary font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3 py-1 rounded-full">Pantauan Real-Time</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-2">Harga Pasar Komoditas Pertanian</h2>
+                    <p class="text-gray-500 text-sm mt-1">* Data harga simulasi terkini dari berbagai pasar induk di Indonesia.</p>
+                </div>
+                <!-- Search & Filter Market -->
+                <div class="mt-6 md:mt-0 flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                            <i class="fa-solid fa-search"></i>
+                        </span>
+                        <input type="text" id="marketSearch" onkeyup="filterMarketTable()" placeholder="Cari komoditas..." class="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Harga Pasar -->
+            <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                <table id="marketTable" class="w-full text-left border-collapse bg-white">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-700 text-sm uppercase tracking-wider border-b border-gray-200">
+                            <th class="py-4 px-6 font-semibold">Komoditas</th>
+                            <th class="py-4 px-6 font-semibold">Harga per Kg</th>
+                            <th class="py-4 px-6 font-semibold">Perubahan</th>
+                            <th class="py-4 px-6 font-semibold">Lokasi Pasar</th>
+                            <th class="py-4 px-6 font-semibold">Tanggal Pembaruan</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 text-sm text-gray-600">
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">🌾</span> <span>Beras Premium</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 14.500</td>
+                            <td class="py-4 px-6 text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +1.5%</td>
+                            <td class="py-4 px-6">Pasar Induk Cipinang, Jakarta</td>
+                            <td class="py-4 px-6 text-gray-400">21 Oktober 2026</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">🌾</span> <span>Beras Medium</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 12.800</td>
+                            <td class="py-4 px-6 text-gray-500 font-medium"><i class="fa-solid fa-minus mr-1"></i> 0.0%</td>
+                            <td class="py-4 px-6">Pasar Induk Cipinang, Jakarta</td>
+                            <td class="py-4 px-6 text-gray-400">21 Oktober 2026</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">🌶️</span> <span>Cabai Merah Keriting</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 38.000</td>
+                            <td class="py-4 px-6 text-red-500 font-medium"><i class="fa-solid fa-arrow-trend-down mr-1"></i> -3.2%</td>
+                            <td class="py-4 px-6">Pasar Kramat Jati, Jakarta</td>
+                            <td class="py-4 px-6 text-gray-400">21 Oktober 2026</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">🌽</span> <span>Jagung Pipilan Kering</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 6.200</td>
+                            <td class="py-4 px-6 text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +0.8%</td>
+                            <td class="py-4 px-6">Pasar Wonokromo, Surabaya</td>
+                            <td class="py-4 px-6 text-gray-400">20 Oktober 2026</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">🥔</span> <span>Kentang Dieng</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 18.500</td>
+                            <td class="py-4 px-6 text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +2.1%</td>
+                            <td class="py-4 px-6">Pasar Caringin, Bandung</td>
+                            <td class="py-4 px-6 text-gray-400">21 Oktober 2026</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50/40 transition">
+                            <td class="py-4 px-6 font-medium text-gray-900 flex items-center space-x-2">
+                                <span class="text-lg">☕</span> <span>Biji Kopi Robusta (Raw)</span>
+                            </td>
+                            <td class="py-4 px-6 font-semibold text-primary">Rp 45.000</td>
+                            <td class="py-4 px-6 text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +4.5%</td>
+                            <td class="py-4 px-6">Bandar Lampung</td>
+                            <td class="py-4 px-6 text-gray-400">21 Oktober 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur D: Marketplace Pertanian -->
+    <section id="marketplace" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <div>
+                <span class="text-primary font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3 py-1 rounded-full">Bursa Tani</span>
+                <h2 class="text-3xl font-bold text-gray-900 mt-2">Marketplace Pertanian Digital</h2>
+                <p class="text-gray-500 text-sm mt-1">Hubungkan langsung petani lokal dengan pembeli, grosir, dan penyedia sarana produksi.</p>
+            </div>
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                <button onclick="filterProduct('all')" class="category-btn active px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium shadow-sm transition">Semua</button>
+                <button onclick="filterProduct('hasil')" class="category-btn px-4 py-2 bg-white text-gray-600 border border-gray-200 rounded-xl text-sm font-medium hover:bg-emerald-50 transition">Hasil Panen</button>
+                <button onclick="filterProduct('sarana')" class="category-btn px-4 py-2 bg-white text-gray-600 border border-gray-200 rounded-xl text-sm font-medium hover:bg-emerald-50 transition">Pupuk & Benih</button>
+                <button onclick="filterProduct('alat')" class="category-btn px-4 py-2 bg-white text-gray-600 border border-gray-200 rounded-xl text-sm font-medium hover:bg-emerald-50 transition">Alat Pertanian</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Produk 1 -->
+            <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-gray-100 flex flex-col justify-between" data-category="hasil">
+                <div>
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=80" alt="Beras Organik" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-semibold px-2.5 py-1 rounded-lg">Hasil Panen</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Karawang, Jawa Barat</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Beras Organik Sejahtera 5kg</h3>
+                        <p class="text-primary font-bold text-xl mb-3">Rp 68.000 <span class="text-xs text-gray-400 font-normal">/ sak</span></p>
+                        <p class="text-gray-500 text-xs line-clamp-2">Beras murni tanpa pemutih buatan, dipanen langsung dari petani binaan Karawang.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex gap-2">
+                    <button onclick="alert('Menambahkan ke Keranjang!')" class="flex-1 bg-emerald-50 hover:bg-emerald-100 text-primary py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping"></i> <span>+ Keranjang</span>
+                    </button>
+                    <button onclick="alert('Menghubungi Petani / Penjual via WhatsApp...')" class="bg-primary hover:bg-emerald-800 text-white px-3 py-2.5 rounded-xl text-sm transition" title="Hubungi Penjual">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-gray-100 flex flex-col justify-between" data-category="sarana">
+                <div>
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1599593006132-9a0815cb9a54?auto=format&fit=crop&w=500&q=80" alt="Pupuk Organik" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-earth text-white text-xs font-semibold px-2.5 py-1 rounded-lg">Pupuk & Benih</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Malang, Jawa Timur</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Pupuk Kandang Fermentasi 50kg</h3>
+                        <p class="text-primary font-bold text-xl mb-3">Rp 45.000 <span class="text-xs text-gray-400 font-normal">/ karung</span></p>
+                        <p class="text-gray-500 text-xs line-clamp-2">Kaya unsur hara makro dan mikro, mempercepat pemulihan struktur tanah pertanian.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex gap-2">
+                    <button onclick="alert('Menambahkan ke Keranjang!')" class="flex-1 bg-emerald-50 hover:bg-emerald-100 text-primary py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping"></i> <span>+ Keranjang</span>
+                    </button>
+                    <button onclick="alert('Menghubungi Penjual via WhatsApp...')" class="bg-primary hover:bg-emerald-800 text-white px-3 py-2.5 rounded-xl text-sm transition" title="Hubungi Penjual">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-gray-100 flex flex-col justify-between" data-category="hasil">
+                <div>
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=500&q=80" alt="Cabai Merah" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-semibold px-2.5 py-1 rounded-lg">Hasil Panen</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Sleman, DI Yogyakarta</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Cabai Merah Segar 1kg</h3>
+                        <p class="text-primary font-bold text-xl mb-3">Rp 35.000 <span class="text-xs text-gray-400 font-normal">/ kg</span></p>
+                        <p class="text-gray-500 text-xs line-clamp-2">Cabai pilihan segar dari petani lereng Merapi dengan kualitas pedas prima.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex gap-2">
+                    <button onclick="alert('Menambahkan ke Keranjang!')" class="flex-1 bg-emerald-50 hover:bg-emerald-100 text-primary py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping"></i> <span>+ Keranjang</span>
+                    </button>
+                    <button onclick="alert('Menghubungi Penjual via WhatsApp...')" class="bg-primary hover:bg-emerald-800 text-white px-3 py-2.5 rounded-xl text-sm transition" title="Hubungi Penjual">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-gray-100 flex flex-col justify-between" data-category="alat">
+                <div>
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=500&q=80" alt="Sprayer Elektrik" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-lg">Alat Pertanian</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Solo, Jawa Tengah</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Sprayer Elektrik 16 Liter Smart</h3>
+                        <p class="text-primary font-bold text-xl mb-3">Rp 385.000 <span class="text-xs text-gray-400 font-normal">/ unit</span></p>
+                        <p class="text-gray-500 text-xs line-clamp-2">Alat semprot disinfektan dan pupuk cair elektrik baterai tahan lama untuk efisiensi lahan luas.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex gap-2">
+                    <button onclick="alert('Menambahkan ke Keranjang!')" class="flex-1 bg-emerald-50 hover:bg-emerald-100 text-primary py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping"></i> <span>+ Keranjang</span>
+                    </button>
+                    <button onclick="alert('Menghubungi Penjual via WhatsApp...')" class="bg-primary hover:bg-emerald-800 text-white px-3 py-2.5 rounded-xl text-sm transition" title="Hubungi Penjual">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-xs text-gray-400 mt-8">* Catatan: Contoh produk di atas adalah simulasi katalog. Transaksi langsung berfungsi setelah integrasi backend pembayaran selesai.</p>
+    </section>
+
+    <!-- Fitur E: Dashboard Petani -->
+    <section id="dashboard" class="py-20 bg-emerald-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div>
+                    <span class="bg-emerald-800 text-emerald-200 text-xs px-3 py-1 rounded-full font-semibold">Simulasi Interaktif</span>
+                    <h2 class="text-3xl font-bold mt-2">Dashboard Petani Mandiri</h2>
+                    <p class="text-emerald-200 text-sm mt-1">Pantau lahan, kalender tanam, jadwal pemupukan, dan catatan pertumbuhan tanaman dalam satu layar.</p>
+                </div>
+                <div class="mt-4 md:mt-0 bg-emerald-800/80 px-4 py-2 rounded-xl border border-emerald-700 flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium">Status Lahan: Aktif & Sehat</span>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Kolom 1: Ringkasan Lahan -->
+                <div class="bg-emerald-800/60 border border-emerald-700 rounded-2xl p-6 backdrop-blur-sm">
+                    <h3 class="font-bold text-lg mb-4 flex items-center justify-between">
+                        <span><i class="fa-solid fa-map-location-dot mr-2 text-secondary"></i> Daftar Lahan Saya</span>
+                        <span class="text-xs bg-primary text-white px-2.5 py-1 rounded-lg">2 Hektar</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-emerald-900/60 p-4 rounded-xl border border-emerald-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-semibold text-white">Lahan Sawah Utama (Blok A)</span>
+                                <span class="text-xs text-emerald-300">1.2 Ha</span>
+                            </div>
+                            <p class="text-xs text-emerald-200 mb-2">Tanaman: Padi Ciherang (Usia 45 Hari)</p>
+                            <div class="w-full bg-emerald-950 rounded-full h-2.5">
+                                <div class="bg-secondary h-2.5 rounded-full" style="width: 45%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-emerald-300 mt-1">
+                                <span>Estimasi Panen: 65 Hari lagi</span>
+                                <span>45%</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-900/60 p-4 rounded-xl border border-emerald-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-semibold text-white">Kebun Hortikultura (Blok B)</span>
+                                <span class="text-xs text-emerald-300">0.8 Ha</span>
+                            </div>
+                            <p class="text-xs text-emerald-200 mb-2">Tanaman: Cabai Merah Keriting (Usia 30 Hari)</p>
+                            <div class="w-full bg-emerald-950 rounded-full h-2.5">
+                                <div class="bg-secondary h-2.5 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-emerald-300 mt-1">
+                                <span>Estimasi Panen: 60 Hari lagi</span>
+                                <span>30%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Kalender Tanam & Jadwal -->
+                <div class="bg-emerald-800/60 border border-emerald-700 rounded-2xl p-6 backdrop-blur-sm">
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fa-solid fa-calendar-days mr-2 text-secondary"></i> Jadwal & Kalender Kegiatan
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3 bg-emerald-900/60 p-3.5 rounded-xl border border-emerald-700">
+                            <div class="bg-primary text-white text-center rounded-lg px-2.5 py-1 text-xs font-bold">
+                                <div>OCT</div>
+                                <div class="text-lg">22</div>
+                            </div>
+                            <div class="text-sm">
+                                <h4 class="font-semibold text-white">Pemupukan Susulan Ke-2</h4>
+                                <p class="text-xs text-emerald-200">Lahan Sawah Blok A (NPK Mutiara 100kg)</p>
+                                <span class="inline-block mt-1 text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Besok Pagi (07:00)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 bg-emerald-900/60 p-3.5 rounded-xl border border-emerald-700">
+                            <div class="bg-primary text-white text-center rounded-lg px-2.5 py-1 text-xs font-bold">
+                                <div>OCT</div>
+                                <div class="text-lg">25</div>
+                            </div>
+                            <div class="text-sm">
+                                <h4 class="font-semibold text-white">Penyiraman & Pengecekan Hama</h4>
+                                <p class="text-xs text-emerald-200">Kebun Cabai Blok B (Insektisida Nabati)</p>
+                                <span class="inline-block mt-1 text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Terjadwal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 3: Notifikasi & Tips Cepat -->
+                <div class="bg-emerald-800/60 border border-emerald-700 rounded-2xl p-6 backdrop-blur-sm">
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fa-solid fa-bell mr-2 text-secondary"></i> Notifikasi & Peringatan Dini
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-amber-500/20 border border-amber-500/30 p-3.5 rounded-xl text-amber-100 flex items-start space-x-3">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-300 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-semibold text-amber-200 text-xs uppercase">Peringatan Cuaca BMKG</h4>
+                                <p class="text-xs mt-0.5">Potensi curah hujan tinggi di wilayah Anda dalam 2 hari ke depan. Pastikan saluran drainase sawah lancar.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-900/60 border border-emerald-700 p-3.5 rounded-xl text-emerald-100
